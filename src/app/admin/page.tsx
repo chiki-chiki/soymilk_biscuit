@@ -11,7 +11,7 @@ export default function AdminPage(props: PageProps<"/admin">) {
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h1 className="text-2xl font-bold">管理</h1>
+        <h1 className="display text-3xl">管理</h1>
         <Link href="/admin/catalog" className="btn">
           味・アソートを編集
         </Link>
@@ -40,7 +40,7 @@ async function FeedbackList({ searchParams }: { searchParams: PageProps<"/admin"
 
   return (
     <section className="space-y-3">
-      <h2 className="font-bold">フィードバック</h2>
+      <h2 className="font-bold text-blue">フィードバック</h2>
       <nav className="flex flex-wrap gap-2 text-sm">
         {(Object.entries(FEEDBACK_STATUS_LABELS) as [FeedbackStatus, string][]).map(([s, label]) => (
           <Link key={s} href={`/admin?status=${s}`} className={`btn-ghost ${s === status ? "border-accent bg-accent-soft" : ""}`}>

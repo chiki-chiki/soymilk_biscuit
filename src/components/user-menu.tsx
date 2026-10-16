@@ -5,7 +5,7 @@ export async function UserMenu() {
   const user = await getCurrentUser();
   if (!user) {
     return (
-      <Link href="/login" className="btn-ghost">
+      <Link href="/login" className="btn-ghost px-3 text-xs sm:px-4 sm:text-sm">
         ログイン
       </Link>
     );
@@ -17,7 +17,7 @@ export async function UserMenu() {
           管理
         </Link>
       )}
-      <Link href="/account" className="btn-ghost">
+      <Link href="/account" className="btn-ghost px-3 text-xs sm:px-4 sm:text-sm">
         マイページ
       </Link>
     </>

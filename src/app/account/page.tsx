@@ -26,7 +26,7 @@ async function Account({ searchParams }: { searchParams: PageProps<"/account">["
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold">マイページ</h1>
+      <h1 className="display text-3xl">マイページ</h1>
       <section className="card flex flex-wrap items-center justify-between gap-3 p-4 text-sm">
         <span>{user.email} でログイン中</span>
         <form action="/auth/signout" method="post">
@@ -35,7 +35,7 @@ async function Account({ searchParams }: { searchParams: PageProps<"/account">["
       </section>
 
       <section className="card p-4">
-        <h2 className="mb-3 font-bold">記録した味（{entries.length}件）</h2>
+        <h2 className="mb-3 font-bold text-blue">記録した味（{entries.length}件）</h2>
         {entries.length === 0 ? (
           <p className="text-sm text-muted">まだ記録がありません。味のページから記録できます。</p>
         ) : (

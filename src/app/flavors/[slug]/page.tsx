@@ -30,13 +30,13 @@ async function FlavorDetail({ params }: { params: PageProps<"/flavors/[slug]">["
 
   return (
     <article className="space-y-6">
-      <Link href="/" className="text-sm text-accent">
+      <Link href="/" className="text-sm font-bold text-blue">
         ← 一覧へ
       </Link>
       <header className="flex gap-4">
         <Swatch name={flavor.name} color={flavor.color} imagePath={flavor.image_path} kind="flavor" size={112} />
         <div>
-          <h1 className="text-2xl font-bold">{flavor.name}</h1>
+          <h1 className="display text-3xl">{flavor.name}</h1>
           {flavor.name_kana && <p className="text-sm text-muted">{flavor.name_kana}</p>}
           {flavor.assort_only && <p className="mt-1 text-xs">アソート限定の味</p>}
           {flavor.description && <p className="mt-2 text-sm">{flavor.description}</p>}
@@ -44,7 +44,7 @@ async function FlavorDetail({ params }: { params: PageProps<"/flavors/[slug]">["
       </header>
 
       <section className="card p-4">
-        <h2 className="mb-3 font-bold">あなたの記録</h2>
+        <h2 className="mb-3 font-bold text-blue">あなたの記録</h2>
         <Suspense fallback={<p className="text-sm text-muted">読み込み中…</p>}>
           <MyLog flavorId={flavor.id} slug={flavor.slug} />
         </Suspense>
@@ -52,13 +52,13 @@ async function FlavorDetail({ params }: { params: PageProps<"/flavors/[slug]">["
 
       {!flavor.assort_only && (
         <section className="card p-4">
-          <h2 className="mb-3 font-bold">単品の販売期</h2>
+          <h2 className="mb-3 font-bold text-blue">単品の販売期</h2>
           <ReleaseTable releases={releases} />
         </section>
       )}
 
       <section className="card p-4">
-        <h2 className="mb-3 font-bold">この味が入っていたアソート</h2>
+        <h2 className="mb-3 font-bold text-blue">この味が入っていたアソート</h2>
         {appearances.length === 0 ? (
           <p className="text-sm text-muted">記録はありません。</p>
         ) : (

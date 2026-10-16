@@ -26,7 +26,7 @@ async function Editor({ params, searchParams }: PageProps<"/admin/assorts/[slug]
 
   return (
     <div className="space-y-6">
-      <Link href="/admin/catalog" className="text-sm text-accent">
+      <Link href="/admin/catalog" className="text-sm font-bold text-blue">
         ← 一覧
       </Link>
       <h1 className="text-xl font-bold">{assort ? `アソート: ${assort.name}` : "アソートを追加"}</h1>
@@ -34,7 +34,7 @@ async function Editor({ params, searchParams }: PageProps<"/admin/assorts/[slug]
       <ItemForm kind="assort" item={assort} />
       {assort && (
         <section className="space-y-3">
-          <h2 className="font-bold">販売期</h2>
+          <h2 className="font-bold text-blue">販売期</h2>
           {releases.map((r) => (
             <div key={r.id} className="card space-y-4 p-4">
               <ReleaseForm kind="assort" parentId={assort.id} parentSlug={assort.slug} release={r} />

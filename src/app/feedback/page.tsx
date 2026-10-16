@@ -7,7 +7,7 @@ export const metadata: Metadata = { title: "情報を送る" };
 export default function FeedbackPage(props: PageProps<"/feedback">) {
   return (
     <div className="mx-auto max-w-xl space-y-4">
-      <h1 className="text-2xl font-bold">情報を送る</h1>
+      <h1 className="display text-3xl">情報を送る</h1>
       <p className="text-sm text-muted">
         新しいフレーバーの目撃情報、掲載情報の誤り、サイトへのご意見をお送りください。いただいた情報は管理者が確認してから反映します。
       </p>

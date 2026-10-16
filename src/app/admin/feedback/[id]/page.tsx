@@ -40,7 +40,7 @@ async function Detail({ params, searchParams }: PageProps<"/admin/feedback/[id]"
 
   return (
     <div className="space-y-6">
-      <Link href="/admin" className="text-sm text-accent">
+      <Link href="/admin" className="text-sm font-bold text-blue">
         ← フィードバック一覧
       </Link>
       <ErrorBanner error={sp.error} />
