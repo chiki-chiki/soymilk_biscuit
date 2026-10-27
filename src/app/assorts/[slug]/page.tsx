@@ -29,25 +29,25 @@ async function AssortDetail({ params }: { params: PageProps<"/assorts/[slug]">["
 
   return (
     <article className="space-y-6">
-      <Link href="/" className="text-sm text-accent">
+      <Link href="/" className="text-sm font-bold text-blue">
         ← 一覧へ
       </Link>
       <header className="flex gap-4">
         <Swatch name={assort.name} color={assort.color} imagePath={assort.image_path} kind="assort" size={112} />
         <div>
-          <h1 className="text-2xl font-bold">{assort.name}</h1>
+          <h1 className="display text-3xl">{assort.name}</h1>
           {assort.name_kana && <p className="text-sm text-muted">{assort.name_kana}</p>}
           {assort.description && <p className="mt-2 text-sm">{assort.description}</p>}
         </div>
       </header>
 
       <section className="card p-4">
-        <h2 className="mb-3 font-bold">販売期</h2>
+        <h2 className="mb-3 font-bold text-blue">販売期</h2>
         <ReleaseTable releases={releases.map((r) => r.release)} piecesLabel="合計枚数" />
       </section>
 
       <section className="space-y-3">
-        <h2 className="font-bold">中身（販売期ごと）</h2>
+        <h2 className="font-bold text-blue">中身（販売期ごと）</h2>
         <Suspense fallback={<Contents releases={releases} eatenIds={null} />}>
           <ContentsWithLogs releases={releases} />
         </Suspense>

@@ -19,7 +19,7 @@ async function CatalogList() {
 
   return (
     <div className="space-y-6">
-      <Link href="/admin" className="text-sm text-accent">
+      <Link href="/admin" className="text-sm font-bold text-blue">
         ← 管理トップ
       </Link>
       {(
@@ -30,7 +30,7 @@ async function CatalogList() {
       ).map(([kind, label, items, base]) => (
         <section key={kind} className="space-y-2">
           <div className="flex items-center justify-between">
-            <h2 className="font-bold">
+            <h2 className="font-bold text-blue">
               {label}（{items.length}）
             </h2>
             <Link href={`${base}/new`} className="btn">

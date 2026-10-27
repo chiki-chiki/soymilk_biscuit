@@ -97,11 +97,13 @@ function read(name: string): Row[] {
 }
 
 function itemUpserts(table: "flavors" | "assorts", rows: Row[]): string {
-  const cols = ["slug", "name", "name_kana", "description", "notes", ...(table === "flavors" ? ["assort_only"] : [])];
+  const cols = ["slug", "name", "name_kana", "description", "notes", "color", ...(table === "flavors" ? ["assort_only"] : [])];
   const values = rows.map((r) => {
     if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(r.slug)) errors.push(`${table}.csv: slug が不正です: ${r.slug}`);
     if (!r.name) errors.push(`${table}.csv ${r.slug}: name が空です`);
-    const v = [lit(r.slug), lit(r.name), lit(r.name_kana), lit(r.description), lit(r.notes)];
+    const color = (r.color ?? "").toLowerCase();
+    if (color && !/^#[0-9a-f]{6}$/.test(color)) errors.push(`${table}.csv ${r.slug}: color は #rrggbb にしてください: ${r.color}`);
+    const v = [lit(r.slug), lit(r.name), lit(r.name_kana), lit(r.description), lit(r.notes), lit(color)];
     // notes に「アソート限定」とあればアソート限定の味として扱う
     if (table === "flavors") v.push(r.assort_only ? String(r.assort_only === "true") : String(/アソート限定/.test(r.notes ?? "")));
     return `  (${v.join(", ")})`;

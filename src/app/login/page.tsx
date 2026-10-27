@@ -8,7 +8,7 @@ export const metadata: Metadata = { title: "ログイン" };
 export default function LoginPage(props: PageProps<"/login">) {
   return (
     <div className="mx-auto max-w-sm space-y-4">
-      <h1 className="text-2xl font-bold">ログイン</h1>
+      <h1 className="display text-3xl">ログイン</h1>
       <p className="text-sm text-muted">ログインすると、食べた記録とひとことメモを残せます。記録は本人にしか見えません。</p>
       <Suspense>
         <Form searchParams={props.searchParams} />
