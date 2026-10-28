@@ -13,7 +13,7 @@ export async function UserMenu() {
   return (
     <>
       {user.isAdmin && (
-        <Link href="/admin" className="hover:text-accent">
+        <Link href="/admin" className="text-blue hover:text-red">
           管理
         </Link>
       )}
