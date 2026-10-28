@@ -17,3 +17,8 @@ export function matchesKeyword(keyword: string, fields: (string | null | undefin
   const haystack = fields.filter(Boolean).map((f) => normalizeForSearch(f!)).join("\n");
   return terms.every((t) => haystack.includes(t));
 }
+
+/** 一覧用の短い名前。「豆乳ビスケット いちご」の共通部分を省いて「いちご」にする */
+export function shortName(name: string): string {
+  return name.replace(/^豆乳(サンド)?ビスケット[\s\u3000]+/, "").trim() || name;
+}

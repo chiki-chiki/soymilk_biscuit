@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { matchesKeyword, normalizeForSearch } from "./search";
+import { matchesKeyword, normalizeForSearch, shortName } from "./search";
 
 describe("normalizeForSearch", () => {
   it("カタカナ・半角カナ・全角英数を揃える", () => {
@@ -17,5 +17,17 @@ describe("matchesKeyword", () => {
   });
   it("空のキーワードはすべてに一致", () => {
     expect(matchesKeyword("  ", ["何でも"])).toBe(true);
+  });
+});
+
+describe("shortName", () => {
+  it("「豆乳ビスケット 〇〇」の共通部分を省く", () => {
+    expect(shortName("豆乳ビスケット いちご")).toBe("いちご");
+    expect(shortName("豆乳ビスケット アソートパック")).toBe("アソートパック");
+  });
+  it("それ以外の名前はそのまま", () => {
+    expect(shortName("オリジナル 豆乳ビスケット缶")).toBe("オリジナル 豆乳ビスケット缶");
+    expect(shortName("豆乳サンドビスケット")).toBe("豆乳サンドビスケット");
+    expect(shortName("塩バニラ")).toBe("塩バニラ");
   });
 });

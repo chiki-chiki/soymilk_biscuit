@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
+import { Swatch } from "@/components/swatch";
 import { getMyLogs, requireUser } from "@/lib/auth";
 import { getCatalog } from "@/lib/catalog";
 import { deleteAccount } from "./actions";
@@ -34,21 +35,32 @@ async function Account({ searchParams }: { searchParams: PageProps<"/account">["
         </form>
       </section>
 
-      <section className="card p-4">
-        <h2 className="mb-3 font-bold text-blue">記録した味（{entries.length}件）</h2>
+      <section className="space-y-3">
+        <h2 className="display text-2xl">記録した味（{entries.length}件）</h2>
         {entries.length === 0 ? (
-          <p className="text-sm text-muted">まだ記録がありません。味のページから記録できます。</p>
+          <p className="card p-5 text-sm">
+            まだ記録がありません。
+            <Link href="/" className="link">
+              一覧
+            </Link>
+            から味のページを開いて、「食べたことがある」にチェックを入れてみてください。
+          </p>
         ) : (
-          <ul className="divide-y divide-border/60 text-sm">
+          <ul className="grid gap-2 sm:grid-cols-2">
             {entries.map((l) => {
               const f = flavorById.get(l.flavor_id)!;
               return (
-                <li key={l.flavor_id} className="py-2">
-                  <Link href={`/flavors/${f.slug}`} className="font-semibold text-accent">
-                    {l.eaten ? "✅ " : "⬜ "}
-                    {f.name}
+                <li key={l.flavor_id}>
+                  <Link href={`/flavors/${f.slug}`} className="group flex items-start gap-3 rounded-2xl bg-paper p-3 hover:bg-cream">
+                    <Swatch name={f.name} color={f.color} imagePath={f.image_path} kind="flavor" size={44} />
+                    <span className="min-w-0 flex-1">
+                      <span className="block text-sm font-bold group-hover:text-red">{f.name}</span>
+                      {l.memo && <span className="mt-0.5 block text-sm text-ink-soft">{l.memo}</span>}
+                    </span>
+                    <span className={`tag border-2 ${l.eaten ? "rotate-6 border-red text-red" : "border-line text-ink-soft"}`}>
+                      {l.eaten ? "たべた" : "まだ"}
+                    </span>
                   </Link>
-                  {l.memo && <p className="mt-0.5 text-muted">{l.memo}</p>}
                 </li>
               );
             })}
@@ -56,7 +68,7 @@ async function Account({ searchParams }: { searchParams: PageProps<"/account">["
         )}
       </section>
 
-      <section className="card border-danger/40 p-4">
+      <section className="card border-2 border-danger/40 p-5">
         <h2 className="mb-2 font-bold text-danger">アカウントの削除</h2>
         <p className="mb-3 text-sm">アカウントを削除すると、食べた記録とメモもすべて消え、元に戻せません。</p>
         <form action={deleteAccount} className="flex flex-wrap items-end gap-2">
